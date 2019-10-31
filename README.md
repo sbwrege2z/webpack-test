@@ -9,8 +9,13 @@ Something with the Webpack bundling process breaks the application. There are tw
 1.  src/index.js gets bundled to dist/bundle1.js
 2.  src/index2.js gets bundled to dist/bundle2/js
 
-The ONLY difference between index.js and index2.js is the line 11:  
-**_ router.get(pattern, null); _**
+The ONLY difference between index.js and index2.js is the line 11:
+
+```javascript
+router.get(pattern, null);
+```
+
+Here's the full source:
 
 ```javascript
 const UrlPattern = require('url-pattern');
