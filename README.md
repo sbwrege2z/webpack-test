@@ -2,7 +2,7 @@
 
 Simple application illustrating a problem with webpack
 
-This program is not meant to be functional. It just illustrated a problem.
+This program is not meant to be functional. It just illustrates a problem.
 
 Something with the Webpack bundling process breaks the application. There are two entry points:
 
