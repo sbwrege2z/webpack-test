@@ -57,5 +57,5 @@ at Object.Module.\_extensions..js (internal/modules/cjs/loader.js:789:10)
 at Module.load (internal/modules/cjs/loader.js:653:32)```
 ````
 
-Is there a configuration option that webpack that will make this work? I'd
+Is there a configuration option for Webpack that will make this work? I'd
 like to use these modules in a cloudflare service worker.
