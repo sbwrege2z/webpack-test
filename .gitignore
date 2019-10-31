@@ -1,3 +1,5 @@
 .vscode
+.jshint
+.prettier
 node_modules/
 package-lock.json
