@@ -1,14 +1,13 @@
-'use strict';
-
 const UrlPattern = require('url-pattern');
 const serviceWorkerRouter = require('service-worker-router');
 
 const router = new serviceWorkerRouter.Router();
 
-// THIS METHOD OF ROUTING DOES NOT CAUSE A PROBLEM:
-router.get('/api/*', null);
+let pattern = new UrlPattern(/^\/api\/(.*)$/);
+console.log(JSON.stringify(pattern.match('/api/test')));
+console.log(JSON.stringify(pattern.match('/apiii/test')));
 
-// CAUSES BUNDLE TO BREAK:
-router.get(new UrlPattern(/^\/api\/(.*)$/), null);
+router.get('/api/*', null);
+router.get(pattern, null);
 
 console.log('Hello world!');

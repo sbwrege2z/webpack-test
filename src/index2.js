@@ -1,5 +1,3 @@
-'use strict';
-
 const UrlPattern = require('url-pattern');
 const serviceWorkerRouter = require('service-worker-router');
 
