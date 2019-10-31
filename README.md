@@ -9,9 +9,11 @@ Something with the Webpack bundling process breaks the application. There are tw
 1.  src/index.js gets bundled to dist/bundle1.js
 2.  src/index2.js gets bundled to dist/bundle2/js
 
-The ONLY difference between index.js and index2.js is the line 11:
+The ONLY difference between index.js and index2.js is the line 11:  
+**_ router.get(pattern, null); _**
 
-````const UrlPattern = require('url-pattern');
+```javascript
+const UrlPattern = require('url-pattern');
 const serviceWorkerRouter = require('service-worker-router');
 
 const router = new serviceWorkerRouter.Router();
@@ -21,19 +23,23 @@ console.log(JSON.stringify(pattern.match('/api/test')));
 console.log(JSON.stringify(pattern.match('/apiii/test')));
 
 router.get('/api/*', null);
-**router.get(pattern, null);**
+router.get(pattern, null);
 
-console.log('Hello world!');```
+console.log('Hello world!');
+```
 
 They should all produce the same output when run:
 
-```["test"]
+```
+["test"]
 null
-Hello world!```
+Hello world!
+```
 
 When dist/bundle1.js is run I get the following error:
 
-```TypeError: argument must be a regex or a string
+````
+TypeError: argument must be a regex or a string
 at new t (C:\Repository\cloudflare\webpack-test\dist\bundle1.js:21:4982)
 at e.addRoute (C:\Repository\cloudflare\webpack-test\dist\bundle1.js:21:8028)
 at e.get (C:\Repository\cloudflare\webpack-test\dist\bundle1.js:21:7259)
