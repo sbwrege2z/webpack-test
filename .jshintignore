@@ -1,8 +1,0 @@
-node_modules/
-*/node_modules/
-**/node_modules/
-build/
-src/scripts/loader.js
-src/scripts/lib/
-src/scripts/plugins/
-src/scripts/maps/usmap.js
