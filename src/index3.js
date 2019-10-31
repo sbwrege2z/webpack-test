@@ -1,5 +1,3 @@
-'use strict';
-
 const UrlPattern = require('url-pattern');
 const serviceWorkerRouter = require('service-worker-router');
 
@@ -10,6 +8,6 @@ console.log(JSON.stringify(pattern.match('/api/test')));
 console.log(JSON.stringify(pattern.match('/apiii/test')));
 
 router.get('/api/*', null);
-//router.get(pattern, null);
+router.get(pattern, null);
 
 console.log('Hello world!');
