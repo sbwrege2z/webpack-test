@@ -11,11 +11,23 @@ Something with the Webpack bundling process breaks the application. There are tw
 
 The ONLY difference between index.js and index2.js is the line 11:
 
-`router.get(pattern, null);`
+````const UrlPattern = require('url-pattern');
+const serviceWorkerRouter = require('service-worker-router');
+
+const router = new serviceWorkerRouter.Router();
+
+let pattern = new UrlPattern(/^\/api\/(.*)$/);
+console.log(JSON.stringify(pattern.match('/api/test')));
+console.log(JSON.stringify(pattern.match('/apiii/test')));
+
+router.get('/api/*', null);
+**router.get(pattern, null);**
+
+console.log('Hello world!');```
 
 They should all produce the same output when run:
 
-````["test"]
+```["test"]
 null
 Hello world!```
 
