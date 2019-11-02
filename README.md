@@ -19,9 +19,9 @@ Here's the full source:
 
 ```javascript
 const UrlPattern = require('url-pattern');
-const serviceWorkerRouter = require('service-worker-router');
+const { Router } = require('service-worker-router');
 
-const router = new serviceWorkerRouter.Router();
+const router = new Router();
 
 let pattern = new UrlPattern(/^\/api\/(.*)$/);
 console.log(JSON.stringify(pattern.match('/api/test')));
@@ -59,3 +59,27 @@ at Module.load (internal/modules/cjs/loader.js:653:32)```
 
 Is there a configuration option for Webpack that will make this work? I'd
 like to use these modules in a cloudflare service worker.
+
+##Solution##
+
+The problem was in these two lines of code:
+
+```javascript
+const UrlPattern = require('url-pattern');
+const { Router } = require('service-worker-router');
+```
+
+Even though the service-worker-router module was using the same version of the url-pattern
+module I had installed, Webpack was treating them as two seperate copies. During the
+minify process, they got assigned to different names (e.g. A and B). When a route
+was defined with UrlPattern (A), the service worker did not recognize it as a UrlPattern (B),
+so it tried to create a new UrlPattern (B) with the first parameter being a UrlPattern (A).
+The UrlPattern constructor accepts a string, a Regex, or a UrlPattern (A), but the
+UrlPattern (B) was none of those so an error was thrown. The UrlPattern and the Router
+need to be imported from the same unit:
+
+const { UrlPattern, Router } = require('service-worker-router');
+
+```javascript
+const { UrlPattern, Router } = require('service-worker-router');
+```

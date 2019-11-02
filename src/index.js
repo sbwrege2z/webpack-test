@@ -1,7 +1,7 @@
 const UrlPattern = require('url-pattern');
-const serviceWorkerRouter = require('service-worker-router');
+const { Router } = require('service-worker-router');
 
-const router = new serviceWorkerRouter.Router();
+const router = new Router();
 
 let pattern = new UrlPattern(/^\/api\/(.*)$/);
 console.log(JSON.stringify(pattern.match('/api/test')));
