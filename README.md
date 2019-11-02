@@ -60,7 +60,7 @@ at Module.load (internal/modules/cjs/loader.js:653:32)```
 Is there a configuration option for Webpack that will make this work? I'd
 like to use these modules in a cloudflare service worker.
 
-##Solution##
+##SOLVED
 
 The problem was in these two lines of code:
 
@@ -77,8 +77,6 @@ so it tried to create a new UrlPattern (B) with the first parameter being a UrlP
 The UrlPattern constructor accepts a string, a Regex, or a UrlPattern (A), but the
 UrlPattern (B) was none of those so an error was thrown. The UrlPattern and the Router
 need to be imported from the same unit:
-
-const { UrlPattern, Router } = require('service-worker-router');
 
 ```javascript
 const { UrlPattern, Router } = require('service-worker-router');
